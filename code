@@ -1,0 +1,52 @@
+Library   SeleniumLibrary
+*** Variables ***
+
+${BROWSER}   Firefox
+
+${URL}  https://profil.wp.pl/login/login.html
+${Adress_email}    login
+${PasswordWP}     password
+${input_email}   testerwsb_t1
+${input_password}   adam1234
+${register_btn}   //button[@type='submit']
+${coockie_btn}   //button[contains(text(),'PRZECHOD')]
+
+*** Test Cases ***
+
+Test correctly log in to email
+  Open site poczta.wp.pl
+  Click coockie
+  Input text to email_field
+  Input text to pass_field
+  Click submit
+  Page should contain Odebrane
+  close session
+  
+*** Keywords ***
+
+
+
+Open site poczta.wp.pl
+  Open Browser   ${URL}   ${BROWSER}
+
+Click coockie
+  sleep  15
+  click element   ${coockie_btn}
+
+  Input text to email_field
+Input text   ${Adress_email}   ${input_email}
+
+  Input text to pass_field
+Input text   ${PasswordWP}    ${input_password}
+
+  Click submit
+Click element   ${register_btn}
+
+  Page should contain Odebrane
+sleep 15
+Page should contain Odebrane
+
+  close session
+    close session
+                                                     
+
